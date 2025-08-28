@@ -154,3 +154,4 @@ WITH (
 );
 
 
+https://github.com/DataWithBaraa/sql-data-warehouse-project/blob/main/scripts/bronze/ddl_bronze.sql
