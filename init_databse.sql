@@ -114,6 +114,43 @@ CREATE TABLE bronze.erp_cat_g1v2 (
   maintenance NVARCHAR(50)
 );
 GO
+----------------------------------------------------------------------------------------------------
+/*
+============================================================
+Load data from sources into 'Bronze' Tables
+============================================================
+Purpose:
 
+*/
+
+TRUNCATE TABLE bronze.crm_cust_info;
+
+BULK INSERT bronze.crm_cust_info
+FROM 'E:\DATA\sql-data-warehouse-project\datasets\cust_info.csv'
+WITH (
+  FIRSTROW = 2,
+  FILEDTERMINATOR = ',',
+  TABLOCK                     == lock the table during loading the entire table
+);
+
+TRUNCATE TABLE bronze.crm_prd_info;
+
+BULK INSERT bronze.crm_prd_info
+FROM 'E:\DATA\sql-data-warehouse-project\datasets\prd_info.csv'
+WITH (
+  FIRSTROW = 2,
+  FILEDTERMINATOR = ',',
+  TABLOCK
+);
+
+TRUNCATE TABLE bronze.crm_sales_details;
+
+BULK INSERT bronze.crm_sales_details
+FROM  'E:\DATA\sql-data-warehouse-project\datasets\sales_details.csv'
+WITH (
+  FIRSTROW = 2,
+  FIELDTERMINATOR = ',',
+  TABLOCK
+);
 
 
