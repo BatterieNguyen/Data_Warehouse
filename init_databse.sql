@@ -130,7 +130,7 @@ FROM 'E:\DATA\sql-data-warehouse-project\datasets\cust_info.csv'
 WITH (
   FIRSTROW = 2,
   FILEDTERMINATOR = ',',
-  TABLOCK                     == lock the table during loading the entire table
+  TABLOCK                     -- lock the table during loading the entire table
 );
 
 TRUNCATE TABLE bronze.crm_prd_info;
@@ -153,5 +153,35 @@ WITH (
   TABLOCK
 );
 
+TRUNCATE TABLE bronze.erp_loc_a101;
 
-https://github.com/DataWithBaraa/sql-data-warehouse-project/blob/main/scripts/bronze/ddl_bronze.sql
+BULK INSERT bronze.erp_loc_a101
+FROM 'E:\DATA\sql-data-warehouse-project\datasets\erp_loc_a101.csv'
+WITH (
+  FIRSTROW = 2,
+  FILEDTERMINATOR = ',';
+  TABLOCK
+);
+
+TRUNCATE TABLE bronze.erp_cust_az12;
+
+BULK INSERT bronze.erp_cust_az12
+FROM 'E:\DATA\sql-data-warehouse-project\datasets\erp_cust_az12.csv'
+WITH (
+  FIRSTROW = 2,
+  FILEDTERMINATOR = ',',
+  TABLOCK
+);
+
+TRUNCATE TABLE bronze.erp_cat_g1v2;
+
+BULK INSERT bronze.erp_cat_g1v2
+FROM 'E:\DATA\sql-data-warehouse-project\datasets\erp_cat_g1v2.csv'
+WITH (
+  FIRSTROW = 2,
+  FIELDTERMINATOR = ',',
+  TABLOCK
+);
+
+
+-- https://github.com/DataWithBaraa/sql-data-warehouse-project/blob/main/scripts/bronze/ddl_bronze.sql
