@@ -159,7 +159,7 @@ BULK INSERT bronze.erp_loc_a101
 FROM 'E:\DATA\sql-data-warehouse-project\datasets\erp_loc_a101.csv'
 WITH (
   FIRSTROW = 2,
-  FILEDTERMINATOR = ',';
+  FIELDTERMINATOR = ',';
   TABLOCK
 );
 
@@ -169,7 +169,7 @@ BULK INSERT bronze.erp_cust_az12
 FROM 'E:\DATA\sql-data-warehouse-project\datasets\erp_cust_az12.csv'
 WITH (
   FIRSTROW = 2,
-  FILEDTERMINATOR = ',',
+  FIELDTERMINATOR = ',',
   TABLOCK
 );
 
