@@ -129,7 +129,7 @@ BULK INSERT bronze.crm_cust_info
 FROM 'E:\DATA\sql-data-warehouse-project\datasets\cust_info.csv'
 WITH (
   FIRSTROW = 2,
-  FILEDTERMINATOR = ',',
+  FIELDTERMINATOR = ',',
   TABLOCK                     -- lock the table during loading the entire table
 );
 
