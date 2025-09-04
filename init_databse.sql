@@ -1,11 +1,14 @@
-USE master;
-
-----------------------------------------------------------------------------------------------------
 /*
-Purpose:
-  This script creates a new database named 'DataWarehouse' after checking if it already exists.
-  If the database exists, it is dropped and recreated.
+====================================================================================================
+  I - DDL SCRIPT: CREATE BRONZE TABLES
+====================================================================================================
+  Purpose:
+    This script creates a new database named 'DataWarehouse' after checking if it already exists.
+    If the database exists, it is dropped and recreated.
+----------------------------------------------------------------------------------------------------
 */
+
+USE master;
 
 -- Drop and recreate the 'DataWarehouse' database
 IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouse')
@@ -30,12 +33,11 @@ GO
 
 ----------------------------------------------------------------------------------------------------
 /*
-============================================================
-Create Bronze Tables
-============================================================
 Purpose:
   This query creates tables in the 'bronze' schema, dropping existing tables if they already exist.
 */
+
+  
 IF OBJECT_ID ('bronze.crm_cust_info', 'U') IS NOT NULL -- 'U' stands for user
   DROP TABLE bronze.crm_cust_info;
 GO
@@ -182,6 +184,20 @@ WITH (
   FIELDTERMINATOR = ',',
   TABLOCK
 );
+
+
+/*
+====================================================================================================
+  II - STORED PROCEDURE: LOAD BRONZE LAYER
+====================================================================================================
+  Purpose:
+    This stored procedure loads data into the 'bronze' schema from external CSV files. 
+    It performs the following actions:
+    - Truncates the bronze tables before loading data.
+    - Uses the `BULK INSERT` command to load data from csv Files to bronze tables.
+----------------------------------------------------------------------------------------------------
+*/
+
 
 
 -- https://github.com/DataWithBaraa/sql-data-warehouse-project/blob/main/scripts/bronze/ddl_bronze.sql
